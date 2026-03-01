@@ -1,0 +1,38 @@
+# Recipe App Walkthrough
+
+Your custom, premium Recipe app has been successfully built! The foundational local-first architecture and modern NativeWind UI have been combined to create a clean, ad-free cooking experience. 
+
+## Features Completed
+1. **URL Recipe Extractor**: Instantly paste URLs to download the core `schema.org/Recipe` data using our minimal Express backend.
+2. **Local Sqlite Database**: Stores all your data securely on-device with zero required cloud logins. Fully integrated with Expo SQLite and Drizzle ORM.
+3. **Backup & Restore**: Easily push and pull your whole recipe `.db` file using native OS file sharing (Drive, iCloud, Dropbox).
+4. **Dynamic Portion Scaling**: A simple mathematical scaler `+ / -` counter in the details screen automatically adjusts your ingredient numbers.
+5. **Cooking Mode**: A special fullscreen, landscape-ready view that forces the device to stay awake while displaying massive text instructions.
+6. **Smart Timers**: The app's instruction UI automatically detects phrases like "30 minutes" and turns them into clickable inline elements that trigger an alert.
+7. **Grocery Lists**: Generate instantaneous shopping carts from scaling ingredients straight to a persistent Zustand state store inside the dedicated Grocery Tab.
+8. **Native Web Share Extension**: Ready-to-go `expo-share-intent` plugins so you can share directly to the app from Safari or Chrome.
+
+## Technology Stack in Action
+- **React Native 0.74 / Expo SDK 51** (TypeScript)
+- **NativeWind 4.0** (Tailwind CSS applied directly to views)
+- **Expo Router** (File-based navigation)
+- **Drizzle ORM** (Typescript-first local SQL wrapper)
+- **Zustand** (Local component state and Grocery persistent storage)
+
+## How to Test and Run
+The code has been successfully written locally in your `/Repositories/recipe-app/` directory.
+
+### Quick Start
+To spin up the mobile application in a simulator:
+1. Open a new terminal session.
+2. Navigate to the `mobile` app directory: `cd /Users/stefangolob/Repositories/recipe-app/mobile`
+3. Start the Expo development server: `npm run start` or `npx expo start`
+4. Press `i` to launch in the iOS Simulator or `a` to open the Android Emulator.
+
+To test the backend parsing service:
+1. Open an independent terminal session.
+2. Navigate to the `backend` environment: `cd /Users/stefangolob/Repositories/recipe-app/backend`
+3. Launch the parser server: `npm run dev` (it will run locally on port `3000`).
+
+## Notes on Native Features
+Because this application implements deep local SDK features like SQLite databases and Native Share Extensions, certain features are outside the scope of the standard "Expo Go" lightweight wrapper. You should either generate a pure native local build using **Prebuild** (`npx expo run:ios`) or push it to cloud distribution via **EAS Build**.
