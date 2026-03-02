@@ -12,5 +12,6 @@ export const recipes = sqliteTable('recipes', {
     totalTime: text('total_time'),
     recipeYield: text('recipe_yield'),
     url: text('url'),
+    category: text('category').default('Uncategorized'),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
 });

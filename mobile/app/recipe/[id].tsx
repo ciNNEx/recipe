@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { getRecipeById, deleteRecipe } from '../database/queries';
+import { getRecipeById, deleteRecipe } from '../../database/queries';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { SmartTimerText } from '@/components/SmartTimerText';
@@ -39,7 +39,7 @@ export default function RecipeDetailScreen() {
                     }
 
                     const scrapedYield = parseInt(data.recipeYield || '1', 10);
-                    const baseYield = isNaN(scrapedYield) ? 1 : scrapedYield;
+                    const baseYield = isNaN(scrapedYield) || scrapedYield <= 0 ? 1 : scrapedYield;
                     setOriginalYield(baseYield);
                     setPortions(baseYield);
                 }
@@ -136,31 +136,12 @@ export default function RecipeDetailScreen() {
                 )}
 
                 {/* Action Row: Time and Portions */}
-                <View className="flex-row items-center justify-between bg-neutral-800 p-4 rounded-2xl mb-8">
+                <View className="flex-row justify-between items-center mb-6">
                     <View>
                         <Text className="text-gray-500 text-xs uppercase tracking-widest font-bold mb-1">Time</Text>
                         <Text className="text-white font-semibold">
                             {recipe.totalTime || recipe.cookTime || recipe.prepTime || 'N/A'}
                         </Text>
-                    </View>
-
-                    <View className="items-end">
-                        <Text className="text-gray-500 text-xs uppercase tracking-widest font-bold mb-1">Portions</Text>
-                        <View className="flex-row items-center border border-neutral-700 rounded-lg overflow-hidden">
-                            <TouchableOpacity
-                                className="px-3 py-1.5 bg-neutral-700 active:bg-neutral-600"
-                                onPress={() => setPortions(p => Math.max(1, p - 1))}
-                            >
-                                <IconSymbol name="minus" size={16} color="#fff" />
-                            </TouchableOpacity>
-                            <Text className="px-4 text-white font-bold">{portions}</Text>
-                            <TouchableOpacity
-                                className="px-3 py-1.5 bg-neutral-700 active:bg-neutral-600"
-                                onPress={() => setPortions(p => p + 1)}
-                            >
-                                <IconSymbol name="plus" size={16} color="#fff" />
-                            </TouchableOpacity>
-                        </View>
                     </View>
                 </View>
 

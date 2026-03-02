@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { insertRecipe } from '../database/queries';
-import type { RecipeData } from '../database/queries';
+import { insertRecipe } from '../../database/queries';
+import type { RecipeData } from '../../database/queries';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AddRecipeScreen() {

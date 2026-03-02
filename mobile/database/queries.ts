@@ -13,6 +13,7 @@ export interface RecipeData {
     totalTime?: string;
     recipeYield?: string;
     url?: string;
+    category?: string;
 }
 
 export async function getAllRecipes() {
@@ -36,6 +37,7 @@ export async function insertRecipe(recipe: RecipeData) {
         totalTime: recipe.totalTime || '',
         recipeYield: recipe.recipeYield || '',
         url: recipe.url || '',
+        category: recipe.category || 'Uncategorized',
     }).returning();
 }
 
@@ -54,5 +56,6 @@ export async function updateRecipe(id: number, recipe: RecipeData) {
         cookTime: recipe.cookTime || '',
         totalTime: recipe.totalTime || '',
         recipeYield: recipe.recipeYield || '',
+        category: recipe.category || 'Uncategorized',
     }).where(eq(recipes.id, id)).returning();
 }

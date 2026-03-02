@@ -8,7 +8,7 @@ import '../global.css';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import migrations from '../drizzle/migrations';
-import { db } from './database/db';
+import { db } from '../database/db';
 import { useShareIntent } from 'expo-share-intent';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
@@ -50,6 +50,9 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="recipe/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="recipe/edit/[id]" options={{ headerShown: false, presentation: 'modal' }} />
+        <Stack.Screen name="recipe/cooking" options={{ headerShown: false, presentation: 'fullScreenModal' }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
       </Stack>
       <StatusBar style="auto" />

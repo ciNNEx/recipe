@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { getRecipeById } from '../database/queries';
+import { getRecipeById } from '../../database/queries';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useKeepAwake } from 'expo-keep-awake';
+import { SmartTimerText } from '@/components/SmartTimerText';
 
 export default function CookingModeScreen() {
     useKeepAwake();
@@ -56,7 +57,7 @@ export default function CookingModeScreen() {
                     <IconSymbol name="xmark" size={24} color="#fff" />
                 </TouchableOpacity>
                 <Text className="text-white font-bold text-lg">Cooking Mode</Text>
-                <View className="w-12 h-12" /> {/* Spacer */}
+                <View className="w-12 h-12" />
             </View>
 
             <ScrollView className="flex-1 px-8 pt-10" contentContainerClassName="flex-grow justify-center">
@@ -64,9 +65,10 @@ export default function CookingModeScreen() {
                     Step {currentStep + 1} of {instructions.length}
                 </Text>
 
-                <Text className="text-white text-5xl font-bold leading-tight">
-                    {step}
-                </Text>
+                <SmartTimerText
+                    text={step}
+                    baseStyle="text-white text-4xl font-bold leading-tight"
+                />
             </ScrollView>
 
             {/* Navigation Footer */}
